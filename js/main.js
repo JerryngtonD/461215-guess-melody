@@ -23,7 +23,7 @@ let insertFrameToApp = (number) => {
 };
 
 let changeCurrentFrame = (isDirectionLeft) => {
-  if (isDirectionLeft === true) {
+  if (isDirectionLeft) {
     if (indexFramePointer > 0) {
       --indexFramePointer;
       insertFrameToApp(indexFramePointer);
