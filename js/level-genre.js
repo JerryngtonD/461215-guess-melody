@@ -1,7 +1,7 @@
 /* eslint-disable no-trailing-spaces */
 import {changeScreen, createElementFromString} from './util';
 import {loseFrame as loseCauseTimeFrame} from './loseCauseTime';
-import {loseFrame as loseCauseAttemptsFrame} from './loseСauseAttempts';
+import {loseFrame as loseCauseAttemptsFrame} from './loseCauseAttempts';
 import winFrame from './winFrame';
 import welcomeScreen from './welcome-screen';
 
