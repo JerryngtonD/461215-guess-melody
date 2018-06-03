@@ -111,6 +111,7 @@ genreAnswers.forEach((genreAnswer) => {
 let probableFrames = [loseCauseTimeFrame, loseCauseAttemptsFrame, winFrame];
 sendAnswerButton.addEventListener(`click`, () => {
   let predictedFrame = probableFrames[Math.floor(Math.random() * probableFrames.length)];
+
   let genreAnswersChecked = levelGenre.querySelectorAll(`[name='answer']:checked`);
   genreAnswersChecked.forEach((answer) => {
     answer.checked = false;
