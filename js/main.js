@@ -1,6 +1,19 @@
-import {changeScreen} from './util';
-import welcomeScreen from './welcome-screen';
+import {
+  answerClick,
+  goToRandomPage,
+  goToWelcomePage,
+  playAgainFromArtistsPage,
+  playAgainFromGenresPage,
+  startGame
+} from "./handlers";
 
-changeScreen(welcomeScreen);
+goToWelcomePage();
+startGame();
+
+answerClick();
+playAgainFromArtistsPage();
+
+goToRandomPage();
+playAgainFromGenresPage();
 
 

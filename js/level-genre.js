@@ -1,9 +1,5 @@
-/* eslint-disable no-trailing-spaces */
-import {backToTop, changeScreen, createElementFromString} from './util';
-import {loseFrame as loseCauseTimeFrame} from './loseCauseTime';
-import {loseFrame as loseCauseAttemptsFrame} from './loseCauseAttempts';
-import winFrame from './winFrame';
-import welcomeScreen from './welcome-screen';
+import {createElementFromString} from './util';
+
 
 const levelGenre = createElementFromString(`
 <section class="main main--level main--level-genre">
@@ -107,28 +103,6 @@ genreAnswers.forEach((genreAnswer) => {
     }
   });
 });
-
-let probableFrames = [loseCauseTimeFrame, loseCauseAttemptsFrame, winFrame];
-sendAnswerButton.addEventListener(`click`, () => {
-  let predictedFrame = probableFrames[Math.floor(Math.random() * probableFrames.length)];
-
-  let genreAnswersChecked = levelGenre.querySelectorAll(`[name='answer']:checked`);
-  genreAnswersChecked.forEach((answer) => {
-    answer.checked = false;
-  });
-
-  changeScreen(predictedFrame);
-
-  let letsPlayButton = document.querySelector(`.main-replay`);
-  letsPlayButton.addEventListener(`click`, () => {
-    changeScreen(welcomeScreen);
-  });
-
-});
-
-
-let playAgainButton = levelGenre.querySelector(`.play-again`);
-backToTop(levelGenre, playAgainButton, welcomeScreen);
 
 export default levelGenre;
 
