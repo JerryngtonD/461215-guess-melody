@@ -1,4 +1,4 @@
-import {changeScreen, createElementFromString} from './util';
+import {changeScreen, createElementFromString, backToTop} from './util';
 import levelGenre from './level-genre';
 import welcomeScreen from './welcome-screen';
 
@@ -76,8 +76,6 @@ answers.forEach((answer) => {
 });
 
 let playAgainButton = levelArtist.querySelector(`.play-again`);
-playAgainButton.addEventListener(`click`, () => {
-  changeScreen(welcomeScreen);
-});
+backToTop(levelArtist, playAgainButton, welcomeScreen);
 
 export default levelArtist;

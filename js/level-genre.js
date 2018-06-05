@@ -1,5 +1,5 @@
 /* eslint-disable no-trailing-spaces */
-import {changeScreen, createElementFromString} from './util';
+import {backToTop, changeScreen, createElementFromString} from './util';
 import {loseFrame as loseCauseTimeFrame} from './loseCauseTime';
 import {loseFrame as loseCauseAttemptsFrame} from './loseCauseAttempts';
 import winFrame from './winFrame';
@@ -126,10 +126,9 @@ sendAnswerButton.addEventListener(`click`, () => {
 
 });
 
+
 let playAgainButton = levelGenre.querySelector(`.play-again`);
-playAgainButton.addEventListener(`click`, () => {
-  changeScreen(welcomeScreen);
-});
+backToTop(levelGenre, playAgainButton, welcomeScreen);
 
 export default levelGenre;
 
