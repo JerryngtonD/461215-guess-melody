@@ -11,3 +11,9 @@ export const changeScreen = (element) => {
   mainElement.appendChild(element);
 };
 
+export const backToTop = (hostSelector, originSelector, frame) => {
+  let playAgainButton = hostSelector.querySelector(`.${originSelector}`);
+  playAgainButton.addEventListener(`click`, ()=> {
+    changeScreen(frame);
+  });
+};

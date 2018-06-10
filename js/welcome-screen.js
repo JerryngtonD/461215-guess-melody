@@ -1,5 +1,4 @@
-import {changeScreen, createElementFromString} from './util';
-import levelArtist from "./level-artist";
+import {createElementFromString} from './util';
 
 const welcomeScreen = createElementFromString(`
   <section class="main main--welcome">
@@ -13,12 +12,6 @@ const welcomeScreen = createElementFromString(`
     </p>
   </section>
 `);
-
-const playButton = welcomeScreen.querySelector(`.main-play`);
-
-playButton.addEventListener(`click`, () => {
-  changeScreen(levelArtist);
-});
 
 
 export default welcomeScreen;

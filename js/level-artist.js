@@ -1,6 +1,5 @@
-import {changeScreen, createElementFromString} from './util';
-import levelGenre from './level-genre';
-import welcomeScreen from './welcome-screen';
+import {createElementFromString} from './util';
+
 
 const levelArtist = createElementFromString(`
  <section class="main main--level main--level-artist">
@@ -66,18 +65,5 @@ const levelArtist = createElementFromString(`
     </div>
   </section>
 `);
-
-const answers = levelArtist.querySelectorAll(`.main-answer`);
-
-answers.forEach((answer) => {
-  answer.addEventListener(`click`, () => {
-    changeScreen(levelGenre);
-  });
-});
-
-let playAgainButton = levelArtist.querySelector(`.play-again`);
-playAgainButton.addEventListener(`click`, () => {
-  changeScreen(welcomeScreen);
-});
 
 export default levelArtist;
