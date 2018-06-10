@@ -15,7 +15,6 @@ let testAnswers = JSON.parse(JSON.stringify(immutableUserData));
 describe(`User options / types / game logic were tested here`, () => {
 
   beforeEach(function () {
-    testAnswers = 0;
     testAnswers = JSON.parse(JSON.stringify(immutableUserData));
   });
 
@@ -107,7 +106,7 @@ describe(`User options / types / game logic were tested here`, () => {
 
     it(`Should show that you lost cause time is over`, () => {
       let results = [-3, 3, 6, 7, 8, 8, 9, 12, 14, 15, 16];
-      let caseAnswers = (Object.assign([], testAnswers)).slice(0, 5);
+      let caseAnswers = testAnswers.slice(0, 5);
 
       for (let answer of caseAnswers) {
         answer.isRight = true;
