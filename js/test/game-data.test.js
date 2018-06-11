@@ -1,6 +1,6 @@
 import {assert} from 'chai';
 
-import {getTotalScore, searchInsert, showResults, Timer, userAnswers as immutableUserData} from "./game-data";
+import {getTotalScore, searchInsert, showResults, Timer, userAnswers as immutableUserData} from "../data/game-data";
 
 describe(`Array`, () => {
   describe(`#indexOf()`, () => {
