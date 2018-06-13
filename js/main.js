@@ -7,6 +7,7 @@ import {
   startGame
 } from "./handlers";
 
+
 goToWelcomePage();
 startGame();
 

@@ -1,30 +1,34 @@
 import {createElementFromString} from './util';
 
+const levelGenre = document.createElement(`section`);
+levelGenre.classList.add(`main`);
 
-const levelGenre = createElementFromString(`
-<section class="main main--level main--level-genre">
-    <a class="play-again play-again__wrap" href="#">
+
+const playAgainTemplate = `<a class="play-again play-again__wrap" href="#">
       <img class="play-again__img" src="/img/melody-logo-ginger.png" alt="logo" width="177" height="76">
-    </a>
-    <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
+    </a>`;
+
+const svgCircleTemplate = `<svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
       <circle
         cx="390" cy="390" r="370"
         class="timer-line"
         style="filter: url(.#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"></circle>
+    </svg>`;
 
-      <div class="timer-value" xmlns="http://www.w3.org/1999/xhtml">
+const timerTemplate = `<div class="timer-value" xmlns="http://www.w3.org/1999/xhtml">
         <span class="timer-value-mins">05</span><!--
         --><span class="timer-value-dots">:</span><!--
         --><span class="timer-value-secs">00</span>
-      </div>
-    </svg>
-    <div class="main-mistakes">
-      <img class="main-mistake" src="img/wrong-answer.png" width="35" height="49">
-      <img class="main-mistake" src="img/wrong-answer.png" width="35" height="49">
-      <img class="main-mistake" src="img/wrong-answer.png" width="35" height="49">
-    </div>
+      </div>`;
 
-    <div class="main-wrap">
+
+const mistakeTemplate = `<div class="main-mistakes">
+      <img class="main-mistake" src="img/wrong-answer.png" width="35" height="49">
+      <img class="main-mistake" src="img/wrong-answer.png" width="35" height="49">
+      <img class="main-mistake" src="img/wrong-answer.png" width="35" height="49">
+    </div>`;
+
+const mainScreenTemplate = `<div class="main-wrap">
       <h2 class="title">Выберите инди-рок треки</h2>
       <form class="genre">
         <div class="genre-answer">
@@ -86,8 +90,15 @@ const levelGenre = createElementFromString(`
         <button class="genre-answer-send" type="submit">Ответить</button>
       </form>
     </div>
-  </section>
-`);
+`;
+
+levelGenre.appendChild(createElementFromString(playAgainTemplate));
+levelGenre.appendChild(createElementFromString(timerTemplate));
+levelGenre.appendChild(createElementFromString(mistakeTemplate));
+levelGenre.appendChild(createElementFromString(svgCircleTemplate));
+
+levelGenre.appendChild(createElementFromString(mainScreenTemplate));
+
 
 const sendAnswerButton = levelGenre.querySelector(`.genre-answer-send`);
 sendAnswerButton.disabled = true;

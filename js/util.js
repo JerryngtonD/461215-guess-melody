@@ -4,7 +4,7 @@ export const createElementFromString = (htmlString) => {
   return entrydDiv.firstChild;
 };
 
-const mainElement = document.querySelector(`.app .main`);
+const mainElement = document.querySelector(`.app`);
 
 export const changeScreen = (element) => {
   mainElement.innerHTML = ``;

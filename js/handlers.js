@@ -63,4 +63,3 @@ export const startGame = () => {
 export const goToWelcomePage = () => {
   changeScreen(welcomeScreen);
 };
-
