@@ -48,13 +48,43 @@ export default (level, state) => {
     playAudioObjects.push(new Audio(audioURL));
   });
 
+  const findTrackIndex = (trackSrc, arrURLs) => {
+    let trackIndex = null;
+    arrURLs.forEach((element, numberIndex) => {
+      if (element === trackSrc) {
+        trackIndex = numberIndex;
+      }
+    });
+    return trackIndex;
+  };
+
+  let previousButton = null;
+  let previousIndexTrack = null;
   answerButtons.forEach((answerButton, index) => {
     answerButton.addEventListener(`click`, (evt) => {
       evt.preventDefault();
-      if (answerButton.classList.contains(`player-control--pause`)) {
-        answerButton.classList.remove(`player-control--pause`);
-        playAudioObjects[index].pause();
+      if (previousButton !== null) {
+        if (answerButton.classList.contains(`player-control--pause`) && previousButton === evt.currentTarget) {
+          previousButton.classList.remove(`player-control--pause`);
+          previousButton = null;
+          playAudioObjects[previousIndexTrack].pause();
+          previousIndexTrack = null;
+        } else if (previousButton !== evt.currentTarget) {
+          previousButton.classList.remove(`player-control--pause`);
+          let currentButton = evt.currentTarget;
+
+          currentButton.classList.add(`player-control--pause`);
+          previousButton = currentButton;
+
+          let currentTrack = evt.currentTarget.parentNode.querySelector(`.track`).getAttribute(`src`);
+          playAudioObjects[previousIndexTrack].pause();
+          previousIndexTrack = findTrackIndex(currentTrack, audioURLs);
+          playAudioObjects[previousIndexTrack].play();
+        }
       } else {
+        let currentButton = evt.currentTarget;
+        previousIndexTrack = index;
+        previousButton = currentButton;
         answerButton.classList.add(`player-control--pause`);
         playAudioObjects[index].play();
       }
