@@ -9,6 +9,7 @@ const getMistakes = (mistakeCount) => {
   return html;
 };
 
+
 export default (mistakes) => {
   return `<div class="main-mistakes">
     ${getMistakes(mistakes)}

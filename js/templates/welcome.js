@@ -12,6 +12,7 @@ const template = `<!-- Приветствие -->
     </p>
   </section>`;
 
+
 const welcomeScreen = getElementFromTemplate(template);
 
 export default (callback) => {

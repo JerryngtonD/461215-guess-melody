@@ -3,6 +3,7 @@ import showScreen from '../show-screen';
 import getWelcomeScreen from './welcome';
 import {onGetNextLevel} from '../main';
 
+
 export default () => {
   const template = `<!-- Результат игры: проигрыш закончились попытки -->
     <section class="main main--result">

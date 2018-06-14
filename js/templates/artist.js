@@ -58,7 +58,6 @@ export default (level, state) => {
     }
   });
 
-
   const answers = screen.querySelectorAll(`.main-answer`);
   [...answers].forEach((answer) => {
     answer.addEventListener(`click`, (evt) => {
