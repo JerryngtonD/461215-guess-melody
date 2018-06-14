@@ -8,7 +8,7 @@ const getAnswerMarkup = (src, number) => {
     <div class="player-wrapper">
       <div class="player">
         <audio class="track" src=${src}></audio>
-        <button class="player-control player-control--pause"></button>
+        <button class="player-control"></button>
         <div class="player-track">
           <span class="player-status"></span>
         </div>
@@ -49,7 +49,8 @@ export default (level, state) => {
   });
 
   answerButtons.forEach((answerButton, index) => {
-    answerButton.addEventListener(`click`, () => {
+    answerButton.addEventListener(`click`, (evt) => {
+      evt.preventDefault();
       if (answerButton.classList.contains(`player-control--pause`)) {
         answerButton.classList.remove(`player-control--pause`);
         playAudioObjects[index].pause();
