@@ -1,6 +1,6 @@
-import {createElementFromString} from './util';
+import {getElementFromTemplate} from '../utils';
 
-const welcomeScreen = createElementFromString(`
+const template = `<!-- Приветствие -->
   <section class="main main--welcome">
     <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
     <button class="main-play">Начать игру</button>
@@ -10,10 +10,18 @@ const welcomeScreen = createElementFromString(`
       Ошибиться можно 3 раза.<br>
       Удачи!
     </p>
-  </section>
-`);
+  </section>`;
 
 
-export default welcomeScreen;
+const welcomeScreen = getElementFromTemplate(template);
+
+export default (callback) => {
+  const screen = welcomeScreen.cloneNode(true);
+
+  const playBtn = screen.querySelector(`.main-play`);
 
 
+  playBtn.addEventListener(`click`, callback);
+
+  return screen;
+};
