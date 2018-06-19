@@ -127,9 +127,9 @@ export default (level, state) => {
 
   sendBtn.addEventListener(`click`, (evt) => {
     evt.preventDefault();
-    if (previousIndexTrack) {
-      playAudioObjects[previousIndexTrack].pause();
-    }
+    playAudioObjects.forEach((playAudioObject) => {
+      playAudioObject.pause();
+    });
     const currentState = state.get();
     const userAnswer = getUserAnswers(level.answers);
     const newAnswer = {
