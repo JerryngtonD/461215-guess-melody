@@ -1,12 +1,12 @@
 import showScreen from "../show-screen";
-import Genre from "../controllers/genre";
-import {Game, getRandomLevels} from "./game";
-import Artist from "../controllers/artist";
-import getResultScreen from "../controllers/result";
-import getWelcomeScreen from "../controllers/welcome";
+import Genre from "./genre";
+import {Game, getRandomLevels} from "../data/game";
+import Artist from "./artist";
+import getResultScreen from "./result";
+import getWelcomeScreen from "./welcome";
 import {getComparison, getResults} from "../show-result";
-import getResultAttemptExpiredScreen from "../controllers/result-attempt-expired";
-import getResultTimeExpiredScreen from '../controllers/result-time-expired';
+import getResultAttemptExpiredScreen from "./result-attempt-expired";
+import getResultTimeExpiredScreen from './result-time-expired';
 
 export class GameScreen {
   constructor(gameModel) {

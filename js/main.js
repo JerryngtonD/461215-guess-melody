@@ -1,4 +1,4 @@
-import {GameScreen} from './data/GameScreen';
+import {GameScreen} from './controllers/GameScreen';
 
 
 let gameScreen = new GameScreen();

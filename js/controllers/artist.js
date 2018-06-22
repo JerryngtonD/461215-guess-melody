@@ -1,8 +1,8 @@
 
 import ArtistView from '../views/artist-view';
-import {GameScreen} from '../data/GameScreen';
+import {GameScreen} from './GameScreen';
 
-export class Artist {
+export default class Artist {
   constructor(level, state) {
     const {mistakes} = state.get();
     this.artistView = new ArtistView(level, mistakes);

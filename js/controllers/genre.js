@@ -1,8 +1,8 @@
 import GenreView from '../views/genre-view';
-import {GameScreen} from '../data/GameScreen';
+import {GameScreen} from './GameScreen';
 
 
-export class Genre {
+export default class Genre {
   constructor(level, state) {
     const {mistakes} = state.get();
     this.genreView = new GenreView(level, mistakes);
