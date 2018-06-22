@@ -11,7 +11,6 @@ import getResultTimeExpiredScreen from './result-time-expired';
 export class GameScreen {
   constructor(gameModel) {
     this.model = gameModel;
-    this.timer = null;
   }
 
   tick() {
@@ -20,21 +19,21 @@ export class GameScreen {
   }
 
   startTimer() {
-    this.timer = setTimeout(() => {
-      if (this.state.TOTAL_TIME === 0) {
+    this.model.timer = setTimeout(() => {
+      if (this.model.state.TOTAL_TIME === 0) {
         this.stopTimer();
         showScreen(getResultTimeExpiredScreen().element);
         this.initializeGame();
         return;
       }
       this.tick();
-      this.updateTimeElems(this.state.TOTAL_TIME);
+      this.updateTimeElems(this.model.state.TOTAL_TIME);
       this.startTimer();
     }, 1000);
   }
 
   stopTimer() {
-    clearTimeout(this.timer);
+    clearTimeout(this.model.timer);
   }
 
   updateTimeElems(currentTime) {
@@ -68,20 +67,20 @@ export class GameScreen {
     const level = currentLevel < Game.TOTAL_QUESTIONS ? levels[currentLevel] : false;
     if (level) {
 
-      this.state({answerTimeBegin: this.state.TOTAL_TIME});
+      this.model.state({answerTimeBegin: this.state.TOTAL_TIME});
       let currentTime = this.state.TOTAL_TIME;
 
       this.stopTimer();
       this.startTimer(currentTime);
-      this.state({currentLevel: currentLevel + 1, mistakes: userResult.mistakes});
+      this.model.state({currentLevel: currentLevel + 1, mistakes: userResult.mistakes});
 
 
       switch (level.type) {
         case Game.TYPES.GENRE:
-          showScreen(new Genre(level, this.state).genreView);
+          showScreen(new Genre(level, this.model.state).genreView);
           break;
         case Game.TYPES.ARTIST:
-          showScreen(new Artist(level, this.state).artistView);
+          showScreen(new Artist(level, this.model.state).artistView);
           break;
       }
       return;
