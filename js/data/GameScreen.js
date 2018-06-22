@@ -1,35 +1,22 @@
-import state from "./game-state";
+import showScreen from "../show-screen";
+import Genre from "../controllers/genre";
+import {Game, getRandomLevels} from "./game";
+import Artist from "../controllers/artist";
+import getResultScreen from "../controllers/result";
+import getWelcomeScreen from "../controllers/welcome";
 import {getComparison, getResults} from "../show-result";
 import getResultAttemptExpiredScreen from "../controllers/result-attempt-expired";
 import getResultTimeExpiredScreen from '../controllers/result-time-expired';
-import {Game, getRandomLevels, INITIAL_STATE} from "./game";
-import getGenreScreen from "../controllers/genre";
-import getArtistScreen from "../controllers/artist";
-import getResultScreen from "../controllers/result";
-import getWelcomeScreen from "../controllers/welcome";
 
-export class GameModel {
-  constructor() {
-    this.state = Object.assign({}, INITIAL_STATE);
+export class GameScreen {
+  constructor(gameModel) {
+    this.model = gameModel;
     this.timer = null;
-    this.statistics = [];
   }
 
-  get state() {
-    return this.state;
-  }
-
-  set state(newState) {
-    this.state = Object.assign({}, this.state, newState);
-  }
-
-  clear() {
-    this.state = Object.assign({}, INITIAL_STATE);
-  }
-
-/*  tick() {
-    let currentTime = this.state.get().TOTAL_TIME;
-    this.state({TOTAL_TIME: --currentTime});
+  tick() {
+    let currentTime = this.model.state.TOTAL_TIME;
+    this.model.state({TOTAL_TIME: --currentTime});
   }
 
   startTimer() {
@@ -68,7 +55,7 @@ export class GameModel {
 
   onGetNextLevel() {
 
-    const {currentLevel, levels, userAnswers} = state.get();
+    const {currentLevel, levels, userAnswers} = this.model.state;
     const userResult = getResults(userAnswers, this.statistics);
 
     if (userResult.mistakes === Game.MISTAKES_COUNT) {
@@ -91,10 +78,10 @@ export class GameModel {
 
       switch (level.type) {
         case Game.TYPES.GENRE:
-          showScreen(getGenreScreen(level, this.state).element);
+          showScreen(new Genre(level, this.state).genreView);
           break;
         case Game.TYPES.ARTIST:
-          showScreen(getArtistScreen(level, this.state).element);
+          showScreen(new Artist(level, this.state).artistView);
           break;
       }
       return;
@@ -123,8 +110,8 @@ export class GameModel {
   }
 
   initializeGame() {
-    this.state.clear();
-    this.state({
+    this.model.state.clear();
+    this.model.state({
       levels: getRandomLevels()
     });
   }
@@ -132,5 +119,5 @@ export class GameModel {
   startGame() {
     this.initializeGame();
     showScreen(getWelcomeScreen(this.onGetNextLevel()).element);
-  }*/
+  }
 }

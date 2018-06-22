@@ -1,27 +1,31 @@
 
 import ArtistView from '../views/artist-view';
-import {dataModel} from '../dataModel';
+import {GameScreen} from '../data/GameScreen';
 
-export default (level, state) => {
-  const {mistakes} = state.get();
-  const artistView = new ArtistView(level, mistakes);
+export class Artist {
+  constructor(level, state) {
+    const {mistakes} = state.get();
+    this.artistView = new ArtistView(level, mistakes);
 
+    this.artistView.onClick = (userAnswer) => {
+      const currentState = state.get();
+      const newAnswer = {
+        userAnswer,
+        isRight: level.track.artist === userAnswer,
+        time: state.get().answerTimeBegin - state.get().TOTAL_TIME
+      };
 
-  artistView.onClick = (userAnswer) => {
-    const currentState = state.get();
-    const newAnswer = {
-      userAnswer,
-      isRight: level.track.artist === userAnswer,
-      time: state.get().answerTimeBegin - state.get().TOTAL_TIME
+      state.set({
+        userAnswers: [...currentState.userAnswers, newAnswer],
+        mistakes: newAnswer.isRight ? currentState.mistakes : currentState.mistakes + 1
+      });
+
+      new GameScreen(state).onGetNextLevel();
     };
+  }
 
-    state.set({
-      userAnswers: [...currentState.userAnswers, newAnswer],
-      mistakes: newAnswer.isRight ? currentState.mistakes : currentState.mistakes + 1
-    });
+  getArtist() {
+    return this.artistView;
 
-    dataModel.onGetNextLevel();
-  };
-
-  return artistView;
-};
+  }
+}

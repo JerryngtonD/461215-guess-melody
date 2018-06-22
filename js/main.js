@@ -1,3 +1,5 @@
-import {dataModel} from "./dataModel";
+import {GameScreen} from './data/GameScreen';
 
-document.addEventListener(`DOMContentLoaded`, dataModel.startGame());
+
+let gameScreen = new GameScreen();
+document.addEventListener(`DOMContentLoaded`, gameScreen.startGame());
