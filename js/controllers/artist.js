@@ -1,6 +1,7 @@
 
 import {onGetNextLevel} from '../main';
 import ArtistView from '../views/artist-view';
+import GameModel from '../data/game-model';
 
 export default (level, state) => {
   const {mistakes} = state.get();
