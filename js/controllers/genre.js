@@ -11,7 +11,7 @@ export default (level, state) => {
     const newAnswer = {
       userAnswer,
       isRight: genreView.checkUserAnswersRight(level.answers, userAnswer),
-      time: 20
+      time: state.get().answerTimeBegin - state.get().TOTAL_TIME
     };
 
     state.set({
