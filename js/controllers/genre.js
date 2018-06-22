@@ -1,6 +1,5 @@
 import GenreView from '../views/genre-view';
-import {GameScreen} from './GameScreen';
-
+import {gameScreen} from '../state';
 
 export default class Genre {
   constructor(level, state) {
@@ -16,12 +15,12 @@ export default class Genre {
         time: state.get().answerTimeBegin - state.get().TOTAL_TIME
       };
 
-      state.set({
+      gameScreen.state({
         userAnswers: [...currentState.userAnswers, newAnswer],
         mistakes: newAnswer.isRight ? currentState.mistakes : currentState.mistakes + 1
       });
 
-      new GameScreen(state).onGetNextLevel();
+      gameScreen.onGetNextLevel();
     };
   }
 }

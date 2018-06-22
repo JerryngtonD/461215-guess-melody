@@ -1,6 +1,6 @@
 
 import ArtistView from '../views/artist-view';
-import {GameScreen} from './GameScreen';
+import {gameScreen} from '../state';
 
 export default class Artist {
   constructor(level, state) {
@@ -15,12 +15,12 @@ export default class Artist {
         time: state.get().answerTimeBegin - state.get().TOTAL_TIME
       };
 
-      state.set({
+      gameScreen.state({
         userAnswers: [...currentState.userAnswers, newAnswer],
         mistakes: newAnswer.isRight ? currentState.mistakes : currentState.mistakes + 1
       });
 
-      new GameScreen(state).onGetNextLevel();
+      gameScreen.onGetNextLevel();
     };
   }
 

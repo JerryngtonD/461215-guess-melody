@@ -1,5 +1,5 @@
-import {GameScreen} from './controllers/GameScreen';
+import {gameScreen} from './state';
 
 
-let gameScreen = new GameScreen();
+
 document.addEventListener(`DOMContentLoaded`, gameScreen.startGame());
