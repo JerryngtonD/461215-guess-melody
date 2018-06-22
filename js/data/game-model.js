@@ -21,24 +21,24 @@ export class GameModel {
   }
 
   set state(newState) {
-    this.state = Object.assign({}, this.this._state, newState);
+    this.state = Object.assign({}, this.state, newState);
   }
 
   tick() {
-    let currentTime = state.get().TOTAL_TIME;
-    this.state.set({TOTAL_TIME: --currentTime});
+    let currentTime = this.state.get().TOTAL_TIME;
+    this.state({TOTAL_TIME: --currentTime});
   }
 
   startTimer() {
     this.timer = setTimeout(() => {
-      if (state.get().TOTAL_TIME === 0) {
+      if (this.state.TOTAL_TIME === 0) {
         this.stopTimer();
         showScreen(getResultTimeExpiredScreen().element);
         this.initializeGame();
         return;
       }
       this.tick();
-      this.updateTimeElems(state.get().TOTAL_TIME);
+      this.updateTimeElems(this.state.TOTAL_TIME);
       this.startTimer();
     }, 1000);
   }
@@ -78,20 +78,20 @@ export class GameModel {
     const level = currentLevel < Game.TOTAL_QUESTIONS ? levels[currentLevel] : false;
     if (level) {
 
-      state.set({answerTimeBegin: state.get().TOTAL_TIME});
-      let currentTime = state.get().TOTAL_TIME;
+      this.state({answerTimeBegin: this.state.TOTAL_TIME});
+      let currentTime = this.state.TOTAL_TIME;
 
       this.stopTimer();
       this.startTimer(currentTime);
-      state.set({currentLevel: currentLevel + 1, mistakes: userResult.mistakes});
+      this.state({currentLevel: currentLevel + 1, mistakes: userResult.mistakes});
 
 
       switch (level.type) {
         case Game.TYPES.GENRE:
-          showScreen(getGenreScreen(level, state).element);
+          showScreen(getGenreScreen(level, this.state).element);
           break;
         case Game.TYPES.ARTIST:
-          showScreen(getArtistScreen(level, state).element);
+          showScreen(getArtistScreen(level, this.state).element);
           break;
       }
       return;
@@ -121,7 +121,7 @@ export class GameModel {
 
   initializeGame() {
     this.state.clear();
-    this.state.set({
+    this.state({
       levels: getRandomLevels()
     });
   }

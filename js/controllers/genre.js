@@ -1,5 +1,6 @@
 import GenreView from '../views/genre-view';
-import {onGetNextLevel} from '../main';
+import {dataModel} from '../dataModel';
+
 
 export default (level, state) => {
   const {mistakes} = state.get();
@@ -19,7 +20,7 @@ export default (level, state) => {
       mistakes: newAnswer.isRight ? currentState.mistakes : currentState.mistakes + 1
     });
 
-    onGetNextLevel();
+    dataModel.onGetNextLevel();
   };
 
   return genreView;

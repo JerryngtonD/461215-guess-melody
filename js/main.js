@@ -1,7 +1,3 @@
-import GameModel from './data/game-model';
-
-
-const dataModel = new GameModel(null);
-
+import {dataModel} from "./dataModel";
 
 document.addEventListener(`DOMContentLoaded`, dataModel.startGame());

@@ -1,12 +1,12 @@
 import ResultTimeExpiredView from '../views/result-time-expired-view';
 import showScreen from '../show-screen';
 import getWelcomeScreen from './welcome';
-import {onGetNextLevel} from '../main';
+import {dataModel} from '../dataModel';
 
 export default () => {
   const resultTimeExpiredView = new ResultTimeExpiredView();
   resultTimeExpiredView.onClick = () => {
-    showScreen(getWelcomeScreen(onGetNextLevel).element);
+    showScreen(getWelcomeScreen(dataModel.onGetNextLevel()).element);
   };
 
   return resultTimeExpiredView;
