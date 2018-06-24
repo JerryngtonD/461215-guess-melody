@@ -1,12 +1,11 @@
 import ResultAttemptExpiredView from '../views/result-attempt-expired-view';
-import showScreen from '../show-screen';
-import getWelcomeScreen from './welcome';
-import {gameScreen} from "../state";
+import Application from '../Application';
+
 
 export default () => {
   const resultAttemptExpiredView = new ResultAttemptExpiredView();
   resultAttemptExpiredView.onClick = () => {
-    showScreen(getWelcomeScreen(gameScreen.onGetNextLevel()).element);
+    Application.showWelcome();
   };
 
   return resultAttemptExpiredView;

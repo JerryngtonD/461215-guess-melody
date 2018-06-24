@@ -19,7 +19,7 @@ export const getResults = (userAnswers) => {
     }
 
     if (answer.time < Game.QUICK_ANSWER_TIME && answer.isRight) {
-      res.fastScores += answerScores;
+      res.fastScores += 1;
     }
 
     res.time += answer.time;

@@ -1,26 +1,30 @@
 import GenreView from '../views/genre-view';
-import {gameScreen} from '../state';
+import Application from "../Application";
 
-export default class Genre {
-  constructor(level, state) {
-    const {mistakes} = state.get();
-    this.genreView = new GenreView(level, mistakes);
+export default (level, state, onGetNextLevel) => {
+  const {mistakes} = state.get();
+  const genreView = new GenreView(level, mistakes);
 
-    this.genreView.onClick = () => {
-      const currentState = state.get();
-      const userAnswer = this.genreView.getUserAnswers();
-      const newAnswer = {
-        userAnswer,
-        isRight: this.genreView.checkUserAnswersRight(level.answers, userAnswer),
-        time: state.get().answerTimeBegin - state.get().TOTAL_TIME
-      };
-
-      gameScreen.state({
-        userAnswers: [...currentState.userAnswers, newAnswer],
-        mistakes: newAnswer.isRight ? currentState.mistakes : currentState.mistakes + 1
-      });
-
-      gameScreen.onGetNextLevel();
+  genreView.onClick = () => {
+    const currentState = state.get();
+    const userAnswer = genreView.getUserAnswers();
+    const newAnswer = {
+      userAnswer,
+      isRight: genreView.checkUserAnswersRight(level.answers, userAnswer),
+      time: state.get().answerTimeBegin - state.get().TOTAL_TIME
     };
-  }
-}
+
+    state.set({
+      userAnswers: [...currentState.userAnswers, newAnswer],
+      mistakes: newAnswer.isRight ? currentState.mistakes : currentState.mistakes + 1
+    });
+
+    onGetNextLevel();
+  };
+
+  genreView.goToWelcome = () => {
+    Application.showWelcome();
+  };
+
+  return genreView;
+};

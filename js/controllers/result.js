@@ -1,13 +1,10 @@
 import ResultView from '../views/result-view';
-import showScreen from '../show-screen';
-import getWelcomeScreen from './welcome';
-import {gameScreen} from '../state';
-
+import Application from '../Application';
 
 export default (data) => {
   const resultView = new ResultView(data);
   resultView.onClick = () => {
-    showScreen(getWelcomeScreen(gameScreen.onGetNextLevel()).element);
+    Application.showWelcome();
   };
 
   return resultView;

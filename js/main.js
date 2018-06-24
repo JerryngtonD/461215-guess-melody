@@ -1,5 +1,6 @@
-import {gameScreen} from './state';
+import Application from './Application';
 
+/* start game */
 
-
-document.addEventListener(`DOMContentLoaded`, gameScreen.startGame());
+Application.showWelcome();
+// startGame();

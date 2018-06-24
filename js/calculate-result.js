@@ -26,5 +26,6 @@ export const calculateResult = (answers, remainNotes = 0) => {
     return -1;
   }
 
+  
   return (answers || []).reduce((res, answer) => res + getPoints(answer), 0);
 };
