@@ -4,7 +4,9 @@ export const INITIAL_STATE = {
   levels: [],
   currentLevel: 0,
   userAnswers: [],
-  mistakes: 0
+  mistakes: 0,
+  TOTAL_TIME: 300,
+  answerTimeBegin: 300
 };
 
 export const TYPES = {

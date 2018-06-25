@@ -11,6 +11,9 @@ export default class GenreView extends AbstracktView {
 
   get template() {
     return `<section class="main main--level main--level-genre">
+      <a class="play-again play-again__wrap" href="#">
+          <img class="play-again__img" src="/img/melody-logo-ginger.png" alt="logo" width="177" height="76">
+      </a>
         ${getSvgMarkup()}
         ${getMistakesMarkup(this._mistakes).template}
     
@@ -58,6 +61,10 @@ export default class GenreView extends AbstracktView {
   }
 
   onClick() {
+    throw new Error(`You need to create handler first!`);
+  }
+
+  goToWelcome() {
     throw new Error(`You need to create handler first!`);
   }
 
@@ -139,5 +146,8 @@ export default class GenreView extends AbstracktView {
       });
       this.onClick();
     });
+
+    const welcomeLink = this.element.querySelector(`.play-again`);
+    welcomeLink.addEventListener(`click`, this.goToWelcome);
   }
 }

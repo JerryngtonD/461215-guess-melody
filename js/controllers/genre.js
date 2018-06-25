@@ -1,7 +1,7 @@
 import GenreView from '../views/genre-view';
-import {onGetNextLevel} from '../main';
+import Application from "../Application";
 
-export default (level, state) => {
+export default (level, state, onGetNextLevel) => {
   const {mistakes} = state.get();
   const genreView = new GenreView(level, mistakes);
 
@@ -11,7 +11,7 @@ export default (level, state) => {
     const newAnswer = {
       userAnswer,
       isRight: genreView.checkUserAnswersRight(level.answers, userAnswer),
-      time: 20
+      time: state.get().answerTimeBegin - state.get().TOTAL_TIME
     };
 
     state.set({
@@ -20,6 +20,10 @@ export default (level, state) => {
     });
 
     onGetNextLevel();
+  };
+
+  genreView.goToWelcome = () => {
+    Application.showWelcome();
   };
 
   return genreView;
