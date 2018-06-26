@@ -15,9 +15,6 @@ export class GameScreen {
     this.beginState = gameState;
     this.gameState = gameState;
     this.gameState.clear();
-    this.gameState.set({
-      levels: getRandomLevels()
-    });
     this.timer = null;
     this.statistics = [];
     this.onGetNextLevel = this.onGetNextLevel.bind(this);
