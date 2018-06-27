@@ -8,6 +8,9 @@ export default (level, state, onGetNextLevel) => {
 
 
   artistView.onClick = (userAnswer) => {
+    console.log(userAnswer);
+    console.log(level);
+    console.log(level.track.artist);
     const currentState = state.get();
     const answerTime = state.get().answerTimeBegin - state.get().TOTAL_TIME;
     const newAnswer = {
@@ -25,7 +28,8 @@ export default (level, state, onGetNextLevel) => {
   };
 
   artistView.goToWelcome = () => {
-    Application.showWelcome();
+
+    Application.startGame();
   };
 
   return artistView;

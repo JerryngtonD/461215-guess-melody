@@ -125,16 +125,12 @@ export const getRandomLevels = () => {
 };
 
 
-const computedlevels = getRandomLevels();
 export const INITIAL_STATE = {
-  levels: computedlevels,
+  levels: [],
   currentLevel: 0,
   userAnswers: [],
   mistakes: 0,
   TOTAL_TIME: 300,
   answerTimeBegin: 300
 };
-
-console.log(INITIAL_STATE.levels);
-
 

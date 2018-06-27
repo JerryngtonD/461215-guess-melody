@@ -147,7 +147,20 @@ export default class GenreView extends AbstracktView {
       this.onClick();
     });
 
+
+    const turnOffMusic = () => {
+      if (previousButton) {
+        previousButton.classList.remove(`player-control--pause`);
+      }
+      playAudioObjects.forEach((playAudioObject) => {
+        playAudioObject.pause();
+      });
+    };
+
     const welcomeLink = this.element.querySelector(`.play-again`);
-    welcomeLink.addEventListener(`click`, this.goToWelcome);
+    welcomeLink.addEventListener(`click`, () => {
+      turnOffMusic();
+      this.goToWelcome();
+    });
   }
 }

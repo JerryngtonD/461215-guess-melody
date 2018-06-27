@@ -22,11 +22,11 @@ export class GameScreen {
 
   initializeGame() {
     this.stopTimer();
+    this.timer = null;
     this.gameState.clear();
     this.gameState.set({
       levels: getRandomLevels()
     });
-    this.timer = null;
     this.onGetNextLevel = this.onGetNextLevel.bind(this);
   }
 

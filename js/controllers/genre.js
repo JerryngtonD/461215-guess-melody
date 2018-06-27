@@ -23,7 +23,7 @@ export default (level, state, onGetNextLevel) => {
   };
 
   genreView.goToWelcome = () => {
-    Application.showWelcome();
+    Application.startGame();
   };
 
   return genreView;

@@ -7,6 +7,7 @@ export default class ArtistView extends AbstracktView {
     super();
     this._mistakes = mistakes;
     this._level = level;
+    this.goToWelcome = this.goToWelcome.bind(this);
   }
 
   get template() {
@@ -74,7 +75,6 @@ export default class ArtistView extends AbstracktView {
       }
     });
 
-
     const answers = this.element.querySelectorAll(`.main-answer`);
 
     [...answers].forEach((answer) => {
@@ -88,7 +88,17 @@ export default class ArtistView extends AbstracktView {
       });
     });
 
+    const turnOffMusic = () => {
+      if (playerControl.classList.contains(`player-control--pause`)) {
+        playerControl.classList.remove(`player-control--pause`);
+      }
+      launchAudio.pause();
+    };
+
     const welcomeLink = this.element.querySelector(`.play-again`);
-    welcomeLink.addEventListener(`click`, this.goToWelcome);
+    welcomeLink.addEventListener(`click`, () => {
+      turnOffMusic();
+      this.goToWelcome();
+    });
   }
 }
