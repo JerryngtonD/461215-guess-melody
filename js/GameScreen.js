@@ -10,7 +10,7 @@ import {randomInteger} from "./utils";
 
 
 const ONE_SECOND = 1000;
-const APP_ID = 8292341;
+const APP_ID = 8292;
 const MIN_RANGE = 0;
 const MAX_RANGE = 10000;
 
