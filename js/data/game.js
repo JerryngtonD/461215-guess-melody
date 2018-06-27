@@ -1,27 +1,8 @@
 import {mixArray, getRandom} from '../utils';
 
-export const INITIAL_STATE = {
-  levels: [],
-  currentLevel: 0,
-  userAnswers: [],
-  mistakes: 0,
-  TOTAL_TIME: 300,
-  answerTimeBegin: 300
-};
-
 export const TYPES = {
   GENRE: `levelGenre`,
   ARTIST: `levelArtist`
-};
-
-export const Game = {
-  TOTAL_QUESTIONS: 10,
-  TYPES,
-  MISTAKES_COUNT: 3,
-  ARTIST_COUNT: 3,
-  QUICK_ANSWER_TIME: 20,
-  GENRE_COUNT: 4,
-  TOTAL_TIME: 300
 };
 
 export const tracks = [
@@ -69,6 +50,16 @@ export const tracks = [
   }
 ];
 
+
+export const Game = {
+  TOTAL_QUESTIONS: 10,
+  TYPES,
+  MISTAKES_COUNT: 3,
+  ARTIST_COUNT: 3,
+  QUICK_ANSWER_TIME: 20,
+  GENRE_COUNT: 4,
+  TOTAL_TIME: 300
+};
 
 const getRandomArtistLevel = () => {
   const tracksList = mixArray(tracks.slice());
@@ -132,3 +123,14 @@ export const getRandomLevels = () => {
 
   return randomLevels;
 };
+
+
+export const INITIAL_STATE = {
+  levels: [],
+  currentLevel: 0,
+  userAnswers: [],
+  mistakes: 0,
+  TOTAL_TIME: 300,
+  answerTimeBegin: 300
+};
+

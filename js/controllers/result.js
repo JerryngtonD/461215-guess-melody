@@ -4,7 +4,7 @@ import Application from '../Application';
 export default (data) => {
   const resultView = new ResultView(data);
   resultView.onClick = () => {
-    Application.showWelcome();
+    Application.startGame();
   };
 
   return resultView;

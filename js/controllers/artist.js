@@ -25,7 +25,8 @@ export default (level, state, onGetNextLevel) => {
   };
 
   artistView.goToWelcome = () => {
-    Application.showWelcome();
+
+    Application.startGame();
   };
 
   return artistView;
