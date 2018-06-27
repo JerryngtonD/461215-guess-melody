@@ -6,9 +6,14 @@ import getResultTimeExpiredScreen from './controllers/result-time-expired';
 import getGenreScreen from './controllers/genre';
 import {getRandomLevels, Game} from './data/game';
 import {getResults, getComparison} from './show-result';
+import {randomInteger} from "./utils";
 
 
 const ONE_SECOND = 1000;
+const APP_ID = 8292341;
+const MIN_RANGE = 0;
+const MAX_RANGE = 10000;
+
 
 export class GameScreen {
   constructor(gameState) {
@@ -108,19 +113,50 @@ export class GameScreen {
     }
 
     const userStatistic = this._getUserStatistics(userResult);
-    const resultData = Object.assign({},
-        userResult,
-        {
-          comparison: getComparison(this.statistics, userStatistic)
-        }
-    );
-
-    this.statistics.push(userStatistic);
+    userStatistic.id = randomInteger(MIN_RANGE, MAX_RANGE);
 
     this.stopTimer();
     this.initializeGame();
-    showScreen(getResultScreen(resultData, this.onGetNextLevel).element);
+
+    this.uploadData(userStatistic)
+      .then(() => {
+        return this.loadData();
+      })
+      .then((userResults) => {
+        const resultData = Object.assign({},
+            userResult,
+            {
+              comparison: getComparison(userResults, userStatistic)
+            }
+        );
+        showScreen(getResultScreen(resultData, this.onGetNextLevel).element);
+      });
   }
+
+  uploadData(data) {
+    return window.fetch(`https://es.dump.academy/guess-melody/stats/${APP_ID}`, {
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': `application/json`
+      },
+      method: `POST`
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          return response;
+        } else {
+          throw new Error(`${response.status}: ${response.statusText}`);
+        }
+      });
+  }
+
+  loadData() {
+    return window.fetch(`https://es.dump.academy/guess-melody/stats/${APP_ID}`)
+      .then((data) => {
+        return data.json();
+      });
+  }
+
 
   _getUserStatistics({time, scores, mistakes}) {
     const userStatistic = {
