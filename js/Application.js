@@ -5,7 +5,6 @@ import showScreen from './show-screen';
 import SplashScreen from './splash/SplashScreen';
 import getGenreScreen from './controllers/genre';
 import getArtistScreen from './controllers/artist';
-import {Game} from "./data/game";
 
 const gameScreen = new GameScreen(state);
 const delayLoadTime = 700;
