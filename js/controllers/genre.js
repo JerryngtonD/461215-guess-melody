@@ -1,7 +1,9 @@
 import GenreView from '../views/genre-view';
 import Application from "../Application";
+import ClarifyScreen from '../splash/ClarifyScreen';
 
-export default (level, state, onGetNextLevel) => {
+
+export default (level, state, onGetNextLevel, startTimer, stopTimer) => {
   const {mistakes} = state.get();
   const genreView = new GenreView(level, mistakes);
 
@@ -23,7 +25,9 @@ export default (level, state, onGetNextLevel) => {
   };
 
   genreView.goToWelcome = () => {
-    Application.startGame();
+    let clarifyScreen = new ClarifyScreen(startTimer);
+    stopTimer();
+    clarifyScreen.showClarify();
   };
 
   return genreView;

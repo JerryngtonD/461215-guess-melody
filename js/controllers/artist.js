@@ -1,8 +1,9 @@
 import ArtistView from '../views/artist-view';
-import Application from '../Application';
+//import Application from '../Application';
+import ClarifyScreen from '../splash/ClarifyScreen';
 
 
-export default (level, state, onGetNextLevel) => {
+export default (level, state, onGetNextLevel, startTimer, stopTimer) => {
   const {mistakes} = state.get();
   const artistView = new ArtistView(level, mistakes);
 
@@ -25,8 +26,9 @@ export default (level, state, onGetNextLevel) => {
   };
 
   artistView.goToWelcome = () => {
-
-    Application.startGame();
+    let clarifyScreen = new ClarifyScreen(startTimer);
+    stopTimer();
+    clarifyScreen.showClarify();
   };
 
   return artistView;

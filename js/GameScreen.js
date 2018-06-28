@@ -12,7 +12,7 @@ import {randomInteger} from "./utils";
 const ONE_SECOND = 1000;
 const MIN_RANGE = 0;
 const MAX_RANGE = 10000;
-const APP_ID = 3829175;
+const APP_ID = 38291601;
 const ALARM_TIME = 30;
 
 
@@ -24,6 +24,9 @@ export class GameScreen {
     this.timer = null;
     this.statistics = [];
     this.onGetNextLevel = this.onGetNextLevel.bind(this);
+    this.startTimer = this.startTimer.bind(this);
+    this.stopTimer = this.stopTimer.bind(this);
+    this.startTimer = this.startTimer.bind(this);
   }
 
   initializeGame() {
@@ -55,8 +58,8 @@ export class GameScreen {
     }, ONE_SECOND);
   }
 
-
   stopTimer() {
+    console.log('я тут');
     clearTimeout(this.timer);
   }
 
@@ -106,10 +109,10 @@ export class GameScreen {
 
       switch (level.type) {
         case Game.TYPES.GENRE:
-          showScreen(getGenreScreen(level, this.gameState, this.onGetNextLevel).element);
+          showScreen(getGenreScreen(level, this.gameState, this.onGetNextLevel, this.startTimer, this.stopTimer).element);
           break;
         case Game.TYPES.ARTIST:
-          showScreen(getArtistScreen(level, this.gameState, this.onGetNextLevel).element);
+          showScreen(getArtistScreen(level, this.gameState, this.onGetNextLevel, this.startTimer, this.stopTimer).element);
           break;
       }
       return;
