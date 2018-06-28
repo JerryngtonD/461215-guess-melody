@@ -8,12 +8,13 @@ import {getRandomLevels, Game} from './data/game';
 import {getResults, getComparison} from './show-result';
 import {randomInteger} from "./utils";
 
-
+const APP_ID = 382920700;
 const ONE_SECOND = 1000;
 const MIN_RANGE = 0;
 const MAX_RANGE = 10000;
-const APP_ID = 38291601;
 const ALARM_TIME = 30;
+const TIME_IS_OVER = 0;
+const OFF_SOUNDS = 1;
 
 
 export class GameScreen {
@@ -65,10 +66,10 @@ export class GameScreen {
 
   startTimer() {
     this.timer = setTimeout(() => {
-      if (this.gameState.get().TOTAL_TIME === 1) {
+      if (this.gameState.get().TOTAL_TIME === OFF_SOUNDS) {
         this.mutePage();
       }
-      if (this.gameState.get().TOTAL_TIME === 0) {
+      if (this.gameState.get().TOTAL_TIME === TIME_IS_OVER) {
         const {levels} = this.gameState.get();
         this.stopTimer();
         this.initializeGame();
@@ -112,6 +113,8 @@ export class GameScreen {
   onGetNextLevel() {
     const {currentLevel, levels, userAnswers} = this.gameState.get();
     const userResult = getResults(userAnswers, this.statistics);
+    const level = currentLevel < Game.TOTAL_QUESTIONS ? levels[currentLevel] : false;
+
 
     if (userResult.mistakes === Game.MISTAKES_COUNT) {
       this.stopTimer();
@@ -123,7 +126,6 @@ export class GameScreen {
       return;
     }
 
-    const level = currentLevel < Game.TOTAL_QUESTIONS ? levels[currentLevel] : false;
     if (level) {
 
       this.gameState.set({answerTimeBegin: this.gameState.get().TOTAL_TIME});

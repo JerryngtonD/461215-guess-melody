@@ -5,7 +5,7 @@ import Application from '../Application';
 export default () => {
   const resultTimeExpiredView = new ResultTimeExpiredView();
   resultTimeExpiredView.onClick = () => {
-    Application.startGame();
+    Application.tryAgain();
   };
 
   return resultTimeExpiredView;

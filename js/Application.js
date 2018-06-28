@@ -3,6 +3,9 @@ import {GameScreen} from './GameScreen';
 import state from './data/game-state';
 import showScreen from './show-screen';
 import SplashScreen from './splash/SplashScreen';
+import getGenreScreen from './controllers/genre';
+import getArtistScreen from './controllers/artist';
+import {Game} from "./data/game";
 
 const gameScreen = new GameScreen(state);
 const delayLoadTime = 700;
@@ -79,7 +82,15 @@ export default class Application {
   }
 
   static tryAgain() {
-    const welcome = getWelcomeView(gameScreen.onGetNextLevel);
-    showScreen(welcome.element);
+    const {levels} = gameScreen.gameState.get();
+    const level = levels[0];
+    gameScreen.startTimer();
+    let firstGameScreen = null;
+    if (level.type === `levelGenre`) {
+      firstGameScreen = getGenreScreen(level, gameScreen.gameState, gameScreen.onGetNextLevel, gameScreen.startTimer, gameScreen.stopTimer);
+    } else {
+      firstGameScreen = getArtistScreen(level, gameScreen.gameState, gameScreen.onGetNextLevel, gameScreen.startTimer, gameScreen.stopTimer);
+    }
+    showScreen(firstGameScreen.element);
   }
 }
