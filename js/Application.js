@@ -16,15 +16,15 @@ export default class Application {
 
     return window.fetch(`https://es.dump.academy/guess-melody/questions`)
       .then((response) => {
-        let questData = response.json();
+        const questData = response.json();
         setTimeout(loaderScreen.stopLoading, delayLoadTime);
         return questData;
       })
       .then((questData) => {
-        let transformedData = questData.map((quest) => {
+        const transformedData = questData.map((quest) => {
           if (quest.type === `artist`) {
             let isRightArtist = null;
-            let answersAdapted = quest.answers.map((answer) => {
+            const answersAdapted = quest.answers.map((answer) => {
               if (answer.isCorrect) {
                 isRightArtist = answer.title;
               }
@@ -46,7 +46,7 @@ export default class Application {
               answers: answersAdapted
             };
           } else if (quest.type === `genre`) {
-            let answerAdapted = quest.answers.map((answer) => {
+            const answerAdapted = quest.answers.map((answer) => {
               let isRight = false;
               if (answer.genre === quest.genre) {
                 isRight = true;

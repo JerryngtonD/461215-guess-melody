@@ -24,7 +24,7 @@ export default (level, state, onGetNextLevel, startTimer, stopTimer) => {
   };
 
   genreView.goToWelcome = () => {
-    let clarifyScreen = new ClarifyScreen(startTimer);
+    const clarifyScreen = new ClarifyScreen(startTimer);
     stopTimer();
     clarifyScreen.showClarify();
   };

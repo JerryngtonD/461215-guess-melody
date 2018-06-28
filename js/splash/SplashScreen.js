@@ -51,10 +51,10 @@ export default class ArtistView extends AbstracktView {
   }
 
   bind() {
-    let acAnimated = {Plugins: {}};
+    const acAnimated = {Plugins: {}};
     acAnimated.Plugins.addObjects = function (element, noteSchema) {
       for (let i = 0; i <= 5; i++) { // set count in css too for number of elements
-        let note = document.createElement(`div`);
+        const note = document.createElement(`div`);
         note.className = `note note` + String(i + 1);
         note.innerHTML = noteSchema;
         element.appendChild(note);

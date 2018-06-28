@@ -68,7 +68,7 @@ export default class ArtistView extends AbstracktView {
     this.tracks = launchAudio;
 
     playerControl.classList.add(`player-control--pause`);
-    let playPromise = launchAudio.play();
+    const playPromise = launchAudio.play();
     if (playPromise !== undefined) {
       playPromise.then(() => {
       })
@@ -83,7 +83,7 @@ export default class ArtistView extends AbstracktView {
         launchAudio.pause();
       } else {
         playerControl.classList.add(`player-control--pause`);
-        let newPlay = launchAudio.play();
+        const newPlay = launchAudio.play();
         if (newPlay !== undefined) {
           newPlay.then(() => {
           })

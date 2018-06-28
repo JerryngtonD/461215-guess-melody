@@ -47,7 +47,7 @@ export default class GenreView extends AbstracktView {
     if (as.size !== bs.size) {
       return false;
     }
-    for (let a of as) {
+    for (const a of as) {
       if (!bs.has(a)) {
         return false;
       }
@@ -108,7 +108,7 @@ export default class GenreView extends AbstracktView {
     this.tracks = playAudioObjects;
 
     answerButtons[0].classList.add(`player-control--pause`);
-    let firstPlayObjPromise = playAudioObjects[0].play();
+    const firstPlayObjPromise = playAudioObjects[0].play();
     if (firstPlayObjPromise !== undefined) {
       firstPlayObjPromise.then(() => {
       })
@@ -139,15 +139,15 @@ export default class GenreView extends AbstracktView {
             previousIndexTrack = null;
           } else if (previousButton !== evt.currentTarget) {
             previousButton.classList.remove(`player-control--pause`);
-            let currentButton = evt.currentTarget;
+            const currentButton = evt.currentTarget;
 
             currentButton.classList.add(`player-control--pause`);
             previousButton = currentButton;
 
-            let currentTrack = evt.currentTarget.parentNode.querySelector(`.track`).getAttribute(`src`);
+            const currentTrack = evt.currentTarget.parentNode.querySelector(`.track`).getAttribute(`src`);
             playAudioObjects[previousIndexTrack].pause();
             previousIndexTrack = findTrackIndex(currentTrack, audioURLs);
-            let playObjectPromise = playAudioObjects[previousIndexTrack].play();
+            const playObjectPromise = playAudioObjects[previousIndexTrack].play();
             if (playObjectPromise !== undefined) {
               playObjectPromise.then(() => {
               })
@@ -156,11 +156,11 @@ export default class GenreView extends AbstracktView {
             }
           }
         } else {
-          let currentButton = evt.currentTarget;
+          const currentButton = evt.currentTarget;
           previousIndexTrack = index;
           previousButton = currentButton;
           answerButton.classList.add(`player-control--pause`);
-          let playObjectPromise = playAudioObjects[index].play();
+          const playObjectPromise = playAudioObjects[index].play();
           if (playObjectPromise !== undefined) {
             playObjectPromise.then(() => {
             })

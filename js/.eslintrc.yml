@@ -6,4 +6,10 @@ env:
   browser: true
   mocha: true
 
+rules:
+  prefer-const: ['error']
+  curly : ['error']
+  vars-on-top : 'error'
+
+
 extends: 'htmlacademy/es6'

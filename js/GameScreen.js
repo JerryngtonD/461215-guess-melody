@@ -98,8 +98,8 @@ export class GameScreen {
       if (currentTime <= ALARM_TIME) {
         timeRoot.style.color = `red`;
       }
-      let currentMins = Math.trunc(currentTime / 60);
-      let currentSecs = currentTime % 60;
+      const currentMins = Math.trunc(currentTime / 60);
+      const currentSecs = currentTime % 60;
 
       if (currentSecs.toString().length !== 1) {
         secs.innerHTML = currentSecs;
@@ -129,7 +129,7 @@ export class GameScreen {
     if (level) {
 
       this.gameState.set({answerTimeBegin: this.gameState.get().TOTAL_TIME});
-      let currentTime = this.gameState.get().TOTAL_TIME;
+      const currentTime = this.gameState.get().TOTAL_TIME;
 
       this.stopTimer();
       this.startTimer(currentTime);
