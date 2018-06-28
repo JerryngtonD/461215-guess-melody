@@ -13,7 +13,7 @@ export default class ClarifyScreen extends AbstracktView {
     return `
  <div class="modal" style="z-index: 1000">
   <div class="header">
-    Остановись и хорошенько подумай?
+    Хорошенько подумай, игра будет потеряна!
   </div>
   <div class="content">
     Ты уверен в том, что хочешь выйти, друг ?
