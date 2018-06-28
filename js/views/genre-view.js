@@ -43,12 +43,29 @@ export default class GenreView extends AbstracktView {
   </div>`;
   }
 
-  checkUserAnswersRight(levelAnswers, userAnswers) {
+  eqSet(as, bs) {
+    if (as.size !== bs.size) {
+      return false;
+    }
+    for (let a of as) {
+      if (!bs.has(a)) {
+        return false;
+      }
+    }
+    return true;
+  }
 
-    return [...levelAnswers].every((levelAnswer) => {
-      const answer = userAnswers.find((item) => item.track.src === levelAnswer.track.src && item.track.artist === levelAnswer.track.artist) || {isRight: false};
-      return levelAnswer.isRight === answer.isRight || !levelAnswer.isRight === !answer.checked;
+  checkUserAnswersRight(levelAnswers, userAnswers) {
+    const getRightLevelAnswers = levelAnswers.filter((answer) => {
+      if (answer.isRight === true) {
+        return answer;
+      }
     });
+
+    const levelRightAnswers = new Set(getRightLevelAnswers);
+    const levelUserAnswers = new Set(userAnswers);
+
+    return this.eqSet(levelRightAnswers, levelUserAnswers);
   }
 
   getUserAnswers() {
@@ -94,7 +111,13 @@ export default class GenreView extends AbstracktView {
     this.tracks = playAudioObjects;
 
     answerButtons[0].classList.add(`player-control--pause`);
-    playAudioObjects[0].play();
+    let firstPlayObjPromise = playAudioObjects[0].play();
+    if (firstPlayObjPromise !== undefined) {
+      firstPlayObjPromise.then(() => {
+      })
+        .catch(() => {
+        });
+    }
 
     const findTrackIndex = (trackSrc, arrURLs) => {
       let trackIndex = null;
@@ -127,14 +150,26 @@ export default class GenreView extends AbstracktView {
             let currentTrack = evt.currentTarget.parentNode.querySelector(`.track`).getAttribute(`src`);
             playAudioObjects[previousIndexTrack].pause();
             previousIndexTrack = findTrackIndex(currentTrack, audioURLs);
-            playAudioObjects[previousIndexTrack].play();
+            let playObjectPromise = playAudioObjects[previousIndexTrack].play();
+            if (playObjectPromise !== undefined) {
+              playObjectPromise.then(() => {
+              })
+                .catch(() => {
+                });
+            }
           }
         } else {
           let currentButton = evt.currentTarget;
           previousIndexTrack = index;
           previousButton = currentButton;
           answerButton.classList.add(`player-control--pause`);
-          playAudioObjects[index].play();
+          let playObjectPromise = playAudioObjects[index].play();
+          if (playObjectPromise !== undefined) {
+            playObjectPromise.then(() => {
+            })
+              .catch(() => {
+              });
+          }
         }
       });
     });

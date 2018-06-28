@@ -68,7 +68,14 @@ export default class ArtistView extends AbstracktView {
     this.tracks = launchAudio;
 
     playerControl.classList.add(`player-control--pause`);
-    launchAudio.play();
+    let playPromise = launchAudio.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+      })
+        .catch(() => {
+
+        });
+    }
 
     playerControl.addEventListener(`click`, () => {
       if (playerControl.classList.contains(`player-control--pause`)) {
@@ -76,7 +83,13 @@ export default class ArtistView extends AbstracktView {
         launchAudio.pause();
       } else {
         playerControl.classList.add(`player-control--pause`);
-        launchAudio.play();
+        let newPlay = launchAudio.play();
+        if (newPlay !== undefined) {
+          newPlay.then(() => {
+          })
+            .catch(() => {
+            });
+        }
       }
     });
 
