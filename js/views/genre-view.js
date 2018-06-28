@@ -155,6 +155,7 @@ export default class GenreView extends AbstracktView {
     const turnOffMusic = () => {
       if (previousButton) {
         previousButton.classList.remove(`player-control--pause`);
+        previousButton = null;
       }
       playAudioObjects.forEach((playAudioObject) => {
         playAudioObject.pause();
