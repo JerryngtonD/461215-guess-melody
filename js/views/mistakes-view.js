@@ -1,5 +1,4 @@
 import AbstracktView from './abstract-view';
-import {Game} from '../data/game';
 
 export default class MistakesView extends AbstracktView {
   constructor(mistakeCount = 0) {
@@ -9,7 +8,7 @@ export default class MistakesView extends AbstracktView {
 
   renderImages() {
     let html = ``;
-    for (let i = 0; i < Game.MISTAKES_COUNT - this.mistakeCount; i++) {
+    for (let i = 0; i < this.mistakeCount; i++) {
       html += `<img class="main-mistake" src="img/wrong-answer.png" width="35" height="49">`;
     }
 
