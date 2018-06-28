@@ -139,7 +139,6 @@ export default class GenreView extends AbstracktView {
       });
     });
 
-
     [...answers].forEach((answer) => {
       answer.addEventListener(`change`, () => this._onAnswerChange(answers, sendBtn));
     });
