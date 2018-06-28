@@ -12,7 +12,7 @@ import {randomInteger} from "./utils";
 const ONE_SECOND = 1000;
 const MIN_RANGE = 0;
 const MAX_RANGE = 10000;
-const APP_ID = randomInteger(MIN_RANGE, MAX_RANGE);
+const APP_ID = 3829175;
 
 
 export class GameScreen {
