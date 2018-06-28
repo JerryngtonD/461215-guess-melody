@@ -30,7 +30,7 @@ export class GameScreen {
     this.getState = this.getState.bind(this);
   }
 
-  getState () {
+  getState() {
     return this.gameState;
   }
 
