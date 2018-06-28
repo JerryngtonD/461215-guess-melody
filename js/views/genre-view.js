@@ -90,6 +90,8 @@ export default class GenreView extends AbstracktView {
       playAudioObjects.push(new Audio(audioURL));
     });
 
+    answerButtons[0].classList.add(`player-control--pause`);
+    playAudioObjects[0].play();
 
     const findTrackIndex = (trackSrc, arrURLs) => {
       let trackIndex = null;
@@ -101,8 +103,8 @@ export default class GenreView extends AbstracktView {
       return trackIndex;
     };
 
-    let previousButton = null;
-    let previousIndexTrack = null;
+    let previousButton = answerButtons[0];
+    let previousIndexTrack = 0;
     answerButtons.forEach((answerButton, index) => {
       answerButton.addEventListener(`click`, (evt) => {
         evt.preventDefault();

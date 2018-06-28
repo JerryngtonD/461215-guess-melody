@@ -65,6 +65,9 @@ export default class ArtistView extends AbstracktView {
     const srcString = audio.querySelector(`.track`).getAttribute(`src`);
     const launchAudio = new Audio(srcString);
 
+    playerControl.classList.add(`player-control--pause`);
+    launchAudio.play();
+
     playerControl.addEventListener(`click`, () => {
       if (playerControl.classList.contains(`player-control--pause`)) {
         playerControl.classList.remove(`player-control--pause`);
