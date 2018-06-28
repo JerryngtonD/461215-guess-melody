@@ -59,7 +59,6 @@ export class GameScreen {
   }
 
   stopTimer() {
-    console.log('я тут');
     clearTimeout(this.timer);
   }
 

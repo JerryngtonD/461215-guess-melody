@@ -1,5 +1,4 @@
 import GenreView from '../views/genre-view';
-import Application from "../Application";
 import ClarifyScreen from '../splash/ClarifyScreen';
 
 

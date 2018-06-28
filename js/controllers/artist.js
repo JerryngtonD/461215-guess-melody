@@ -1,5 +1,4 @@
 import ArtistView from '../views/artist-view';
-//import Application from '../Application';
 import ClarifyScreen from '../splash/ClarifyScreen';
 
 
