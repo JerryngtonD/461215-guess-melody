@@ -58,12 +58,14 @@ export default class ArtistView extends AbstracktView {
     throw new Error(`You need to create handler first!`);
   }
 
+
   bind() {
     const audio = this.element.querySelector(`.player`);
     const playerControl = this.element.querySelector(`.player-control`);
 
     const srcString = audio.querySelector(`.track`).getAttribute(`src`);
     const launchAudio = new Audio(srcString);
+    this.tracks = launchAudio;
 
     playerControl.classList.add(`player-control--pause`);
     launchAudio.play();

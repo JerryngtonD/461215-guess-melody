@@ -27,6 +27,11 @@ export class GameScreen {
     this.startTimer = this.startTimer.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
     this.startTimer = this.startTimer.bind(this);
+    this.getState = this.getState.bind(this);
+  }
+
+  getState () {
+    return this.gameState;
   }
 
   initializeGame() {
@@ -39,6 +44,20 @@ export class GameScreen {
     this.onGetNextLevel = this.onGetNextLevel.bind(this);
   }
 
+
+  muteMe(elem) {
+    elem.pause();
+  }
+
+  mutePage() {
+    const {tracks} = this.gameState.get();
+    if (tracks.length > 1) {
+      tracks.forEach((audio) => this.muteMe(audio));
+    } else {
+      this.muteMe(tracks);
+    }
+  }
+
   tick() {
     let currentTime = this.gameState.get().TOTAL_TIME;
     this.gameState.set({TOTAL_TIME: --currentTime});
@@ -46,10 +65,17 @@ export class GameScreen {
 
   startTimer() {
     this.timer = setTimeout(() => {
+      if (this.gameState.get().TOTAL_TIME === 1) {
+        this.mutePage();
+      }
       if (this.gameState.get().TOTAL_TIME === 0) {
+        const {levels} = this.gameState.get();
         this.stopTimer();
-        showScreen(getResultTimeExpiredScreen().element);
         this.initializeGame();
+        this.gameState.set({
+          levels
+        });
+        showScreen(getResultTimeExpiredScreen().element);
         return;
       }
       this.tick();
@@ -90,10 +116,12 @@ export class GameScreen {
     if (userResult.mistakes === Game.MISTAKES_COUNT) {
       this.stopTimer();
       this.initializeGame();
+      this.gameState.set({
+        levels
+      });
       showScreen(getResultAttemptExpiredScreen().element);
       return;
     }
-
 
     const level = currentLevel < Game.TOTAL_QUESTIONS ? levels[currentLevel] : false;
     if (level) {
@@ -108,10 +136,18 @@ export class GameScreen {
 
       switch (level.type) {
         case Game.TYPES.GENRE:
-          showScreen(getGenreScreen(level, this.gameState, this.onGetNextLevel, this.startTimer, this.stopTimer).element);
+          const nextGenreScreen = getGenreScreen(level, this.gameState, this.onGetNextLevel, this.startTimer, this.stopTimer);
+          showScreen(nextGenreScreen.element);
+          this.gameState.set({
+            tracks: nextGenreScreen.tracks
+          });
           break;
         case Game.TYPES.ARTIST:
-          showScreen(getArtistScreen(level, this.gameState, this.onGetNextLevel, this.startTimer, this.stopTimer).element);
+          const nextArtistScreen = getArtistScreen(level, this.gameState, this.onGetNextLevel, this.startTimer, this.stopTimer);
+          showScreen(nextArtistScreen.element);
+          this.gameState.set({
+            tracks: nextArtistScreen.tracks
+          });
           break;
       }
       return;

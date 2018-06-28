@@ -77,4 +77,9 @@ export default class Application {
         showScreen(welcome.element);
       });
   }
+
+  static tryAgain() {
+    const welcome = getWelcomeView(gameScreen.onGetNextLevel);
+    showScreen(welcome.element);
+  }
 }

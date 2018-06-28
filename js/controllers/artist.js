@@ -6,7 +6,6 @@ export default (level, state, onGetNextLevel, startTimer, stopTimer) => {
   const {mistakes} = state.get();
   const artistView = new ArtistView(level, mistakes);
 
-
   artistView.onClick = (userAnswer) => {
     const currentState = state.get();
     const answerTime = state.get().answerTimeBegin - state.get().TOTAL_TIME;

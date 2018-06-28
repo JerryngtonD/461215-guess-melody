@@ -78,6 +78,7 @@ export default class GenreView extends AbstracktView {
     }
   }
 
+
   bind() {
     const sendBtn = this.element.querySelector(`.genre-answer-send`);
     const answers = this.element.querySelectorAll(`input[name=answer]`);
@@ -89,6 +90,8 @@ export default class GenreView extends AbstracktView {
     audioURLs.forEach((audioURL) => {
       playAudioObjects.push(new Audio(audioURL));
     });
+
+    this.tracks = playAudioObjects;
 
     answerButtons[0].classList.add(`player-control--pause`);
     playAudioObjects[0].play();
