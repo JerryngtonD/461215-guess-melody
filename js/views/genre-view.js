@@ -57,11 +57,8 @@ export default class GenreView extends AbstracktView {
 
   checkUserAnswersRight(levelAnswers, userAnswers) {
     const getRightLevelAnswers = levelAnswers.filter((answer) => {
-      if (answer.isRight === true) {
-        return answer;
-      }
+      return (answer.isRight === true);
     });
-
     const levelRightAnswers = new Set(getRightLevelAnswers);
     const levelUserAnswers = new Set(userAnswers);
 
