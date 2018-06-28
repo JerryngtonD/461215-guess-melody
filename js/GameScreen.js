@@ -13,6 +13,7 @@ const ONE_SECOND = 1000;
 const MIN_RANGE = 0;
 const MAX_RANGE = 10000;
 const APP_ID = 3829175;
+const ALARM_TIME = 30;
 
 
 export class GameScreen {
@@ -65,7 +66,9 @@ export class GameScreen {
     if (timeRoot) {
       const mins = timeRoot.querySelector(`.timer-value-mins`);
       const secs = timeRoot.querySelector(`.timer-value-secs`);
-
+      if (currentTime <= ALARM_TIME) {
+        timeRoot.style.color = `red`;
+      }
       let currentMins = Math.trunc(currentTime / 60);
       let currentSecs = currentTime % 60;
 
