@@ -1,8 +1,8 @@
 import getWelcomeView from './controllers/welcome';
-import GameScreen from './gameScreen';
+import GameScreen from './game-screen';
 import state from './data/game-state';
 import showScreen from './show-screen';
-import SplashScreen from './splash/splashScreen';
+import SplashScreen from './splash/splash-screen';
 import getGenreScreen from './controllers/genre';
 import getArtistScreen from './controllers/artist';
 
