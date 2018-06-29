@@ -60,7 +60,7 @@ export default class ClarifyScreen extends AbstracktView {
     const continueButton = this.element.querySelector(`.escape`);
 
     goToWelcomeButton.addEventListener(`click`, () => {
-      Application.startGame();
+      Application.cancelGame();
     });
 
     continueButton.addEventListener(`click`, () => {

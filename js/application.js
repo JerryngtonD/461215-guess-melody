@@ -92,4 +92,15 @@ export default class Application {
     }
     showScreen(firstGameScreen.element);
   }
+
+  static cancelGame() {
+    const {levels} = gameScreen.gameState.get();
+    gameScreen.stopTimer();
+    gameScreen.initializeGame();
+    gameScreen.gameState.set({
+      levels
+    });
+    const welcome = getWelcomeView(gameScreen.onGetNextLevel);
+    showScreen(welcome.element);
+  }
 }
