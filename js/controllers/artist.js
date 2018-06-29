@@ -1,5 +1,5 @@
 import ArtistView from '../views/artist-view';
-import ClarifyScreen from '../splash/ClarifyScreen';
+import ClarifyScreen from '../splash/clarifyScreen';
 
 
 export default (level, state, onGetNextLevel, startTimer, stopTimer) => {

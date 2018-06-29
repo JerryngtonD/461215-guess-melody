@@ -1,5 +1,5 @@
 import ResultAttemptExpiredView from '../views/result-attempt-expired-view';
-import Application from '../Application';
+import Application from '../application';
 
 
 export default () => {

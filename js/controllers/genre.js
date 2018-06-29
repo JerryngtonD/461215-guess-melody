@@ -1,5 +1,5 @@
 import GenreView from '../views/genre-view';
-import ClarifyScreen from '../splash/ClarifyScreen';
+import ClarifyScreen from '../splash/clarifyScreen';
 
 
 export default (level, state, onGetNextLevel, startTimer, stopTimer) => {

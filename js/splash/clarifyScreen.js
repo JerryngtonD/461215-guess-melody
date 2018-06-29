@@ -1,6 +1,6 @@
 import AbstracktView from '../views/abstract-view';
 import {getElementFromTemplate} from '../utils';
-import Application from '../Application';
+import Application from '../application';
 
 
 export default class ClarifyScreen extends AbstracktView {

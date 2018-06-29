@@ -1,5 +1,5 @@
 import ResultTimeExpiredView from '../views/result-time-expired-view';
-import Application from '../Application';
+import Application from '../application';
 
 
 export default () => {
