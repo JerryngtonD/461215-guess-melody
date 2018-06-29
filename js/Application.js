@@ -1,5 +1,5 @@
 import getWelcomeView from './controllers/welcome';
-import {GameScreen} from './GameScreen';
+import GameScreen from './GameScreen';
 import state from './data/game-state';
 import showScreen from './show-screen';
 import SplashScreen from './splash/SplashScreen';

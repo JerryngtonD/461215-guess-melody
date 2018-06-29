@@ -17,7 +17,7 @@ const TIME_IS_OVER = 0;
 const OFF_SOUNDS = 1;
 
 
-export class GameScreen {
+export default class GameScreen {
   constructor(gameState) {
     this.beginState = gameState;
     this.gameState = gameState;
