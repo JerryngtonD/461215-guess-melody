@@ -2,14 +2,18 @@ import {Game} from './data/game';
 const TIME_LIMIT = 300;
 export const LIFE_COUNT = 3;
 export const MAX_ANSWERS = 10;
+const MISTAKE_POINT = -2;
+const QUICK_ANSWER_POINT = 2;
+const NORMAL_ANSWER_POINT = 1;
+
 export const getPoints = ({isRight, time}) => {
   if (!isRight) {
-    return -2;
+    return MISTAKE_POINT;
   } else if (time < Game.QUICK_ANSWER_TIME) {
-    return 2;
+    return QUICK_ANSWER_POINT;
   }
 
-  return 1;
+  return NORMAL_ANSWER_POINT;
 };
 
 export const calculateResult = (answers, remainNotes = 0) => {
